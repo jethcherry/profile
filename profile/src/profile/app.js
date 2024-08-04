@@ -1,3 +1,36 @@
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
+
 export function Avatar() {
   return <img src="home.jpg" alt="Jethro Cheruiyot" className="avatar" />;
 }
@@ -18,23 +51,25 @@ export function Intro() {
 }
 
 export function SkillSet() {
+  // const numSkill = skill.length;
   return (
     <div className="skill-list">
-      <Skill skill="React" emoji="😀" color="blue" />
-      <Skill skill="Angular" emoji="😀" color="orangered" />
-      <Skill skill="Typescript" emoji="😀" color="yellow" />
-      <Skill skill="Javascript" emoji="😀" color="orange" />
-      <Skill skill="Html Css" emoji="😀" color="green" />
-      <Skill skill="Git Github Docker" emoji="😀" color="red" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
     </div>
   );
 }
 
-export function Skill(props) {
+export function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
     </div>
   );
 }
